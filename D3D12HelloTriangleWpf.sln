@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D12HelloTriangleWpf", "D3D12HelloTriangleWpf\D3D12HelloTriangleWpf.csproj", "{D342D650-5957-4B1D-B700-5F8D2221840E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D12HelloTriangleWpfWinFormInterop", "D3D12HelloTriangleWpfWinFormInterop\D3D12HelloTriangleWpfWinFormInterop.csproj", "{D342D650-5957-4B1D-B700-5F8D2221840E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D12HelloTriangleSharp", "D3D12HelloTriangleSharp\D3D12HelloTriangleSharp.csproj", "{621D8B8A-BB06-488D-B716-73D7660AA1A7}"
 EndProject

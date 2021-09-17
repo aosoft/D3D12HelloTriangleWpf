@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace D3D12HelloTriangleWpf
+namespace D3D12HelloTriangleWpfWinFormInterop
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

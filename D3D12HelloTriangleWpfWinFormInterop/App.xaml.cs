@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace D3D12HelloTriangleWpf
+namespace D3D12HelloTriangleWpfWinFormInterop
 {
     /// <summary>
     /// Interaction logic for App.xaml
