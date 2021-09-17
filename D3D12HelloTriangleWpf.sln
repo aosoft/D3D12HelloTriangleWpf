@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "D3D12HelloTriangleWpf", "D3D12HelloTriangleWpf\D3D12HelloTriangleWpf.csproj", "{D342D650-5957-4B1D-B700-5F8D2221840E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D342D650-5957-4B1D-B700-5F8D2221840E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D342D650-5957-4B1D-B700-5F8D2221840E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D342D650-5957-4B1D-B700-5F8D2221840E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D342D650-5957-4B1D-B700-5F8D2221840E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {804F503A-A324-4622-9197-4416A7EA9ED6}
+	EndGlobalSection
+EndGlobal
