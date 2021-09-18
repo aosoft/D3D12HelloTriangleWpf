@@ -4,6 +4,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
   xmlns:local="clr-namespace:D3D12HelloTriangleWpfWinFormInterop"
   mc:Ignorable="d"
   Title="MainWindow" Height="768" Width="1024">
@@ -12,7 +13,9 @@
       <RowDefinition Height="*" />
       <RowDefinition Height="32" />
     </Grid.RowDefinitions>
-    <WindowsFormsHost Grid.Row="0" x:Name="WinFormsHost"/>
+    <WindowsFormsHost Grid.Row="0" x:Name="WinFormsHost">
+      <wf:Panel x:Name="WinFormsPanel" />
+    </WindowsFormsHost>
     <Slider Grid.Row="1" VerticalAlignment="Stretch" Minimum="0.0" Maximum="1.0" Value="1.0" />
   </Grid>
 </Window>
