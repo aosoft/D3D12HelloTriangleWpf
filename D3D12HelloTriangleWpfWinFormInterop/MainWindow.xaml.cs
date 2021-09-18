@@ -10,7 +10,7 @@ namespace D3D12HelloTriangleWpfWinFormInterop
     /// </summary>
     public partial class MainWindow : Window
     {
-        private D3D12HelloTriangle? _renderer;
+        private D3D12HelloTriangleWindow? _renderer;
         private float _ratio;
         
         public MainWindow()
@@ -20,7 +20,7 @@ namespace D3D12HelloTriangleWpfWinFormInterop
 
             WinFormsHost.Loaded += (_, _) =>
             {
-                _renderer = new D3D12HelloTriangle(WinFormsPanel.Handle, WinFormsPanel.Width, WinFormsPanel.Height);
+                _renderer = new D3D12HelloTriangleWindow(WinFormsPanel.Handle, WinFormsPanel.Width, WinFormsPanel.Height);
                 _renderer.Render(_ratio);
             };
 

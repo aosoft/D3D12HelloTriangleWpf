@@ -2,7 +2,7 @@
 
 namespace D3D12HelloTriangleSharp
 {
-    public sealed class D3D12HelloTriangle : IDisposable
+    public sealed class D3D12HelloTriangleWindow : IDisposable
     {
         private const int FrameCount = 2;
         
@@ -10,7 +10,7 @@ namespace D3D12HelloTriangleSharp
         private readonly ResourceSet[] _resourceSets = new ResourceSet[FrameCount];
         private readonly Display _display;
         
-        public D3D12HelloTriangle(IntPtr windowHandle, int width, int height)
+        public D3D12HelloTriangleWindow(IntPtr windowHandle, int width, int height)
         {
             _device = new GraphicsDevice(false);
             var shader = new Shader();
