@@ -27,14 +27,9 @@ namespace D3D12HelloTriangleSharp
         
         public Fence Fence { get; }
         
-        public float Ratio
+        public void Render(float ratio, D3D12.Resource rt, D3D12.CpuDescriptorHandle rtvHandle)
         {
-            get => _cb.Ratio;
-            set => _cb.Ratio = value;
-        }
-        
-        public void Render(D3D12.Resource rt, D3D12.CpuDescriptorHandle rtvHandle)
-        {
+            _cb.Ratio = ratio;
             _cb.Update();
             _pipeline.PopulateCommandList(_device.CommandAllocator, rt, rtvHandle, _cb);
             _device.CommandQueue.ExecuteCommandList(_pipeline.CommandList);

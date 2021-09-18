@@ -5,7 +5,6 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
-  xmlns:local="clr-namespace:D3D12HelloTriangleWpfWinFormInterop"
   mc:Ignorable="d"
   Title="MainWindow" Height="768" Width="1024">
   <Grid>
@@ -16,6 +15,6 @@
     <WindowsFormsHost Grid.Row="0" x:Name="WinFormsHost">
       <wf:Panel x:Name="WinFormsPanel" />
     </WindowsFormsHost>
-    <Slider Grid.Row="1" VerticalAlignment="Stretch" Minimum="0.0" Maximum="1.0" Value="1.0" />
+    <Slider Grid.Row="1" x:Name="Slider" VerticalAlignment="Stretch" Minimum="0.0" Maximum="1.0" Value="1.0" />
   </Grid>
 </Window>

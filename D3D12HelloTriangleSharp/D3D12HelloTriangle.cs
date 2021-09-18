@@ -7,17 +7,16 @@ namespace D3D12HelloTriangleSharp
         private const int FrameCount = 2;
         
         private readonly GraphicsDevice _device;
-        private readonly Shader _shader = new Shader();
         private readonly ResourceSet[] _resourceSets = new ResourceSet[FrameCount];
-
         private readonly Display _display;
         
-        public D3D12HelloTriangle(IntPtr windowHandle, int width, int height, bool useWarpDevice)
+        public D3D12HelloTriangle(IntPtr windowHandle, int width, int height)
         {
-            _device = new GraphicsDevice(useWarpDevice);
+            _device = new GraphicsDevice(false);
+            var shader = new Shader();
             for (int i = 0; i < FrameCount; i++)
             {
-                _resourceSets[i] = new ResourceSet(_device, width, height, _shader);
+                _resourceSets[i] = new ResourceSet(_device, width, height, shader);
             }
             
             _display = new Display(_device, windowHandle, width, height, FrameCount);
@@ -25,32 +24,21 @@ namespace D3D12HelloTriangleSharp
         
         public void Dispose()
         {
-            _display.Dispose();
             for (int i = 0; i < FrameCount; i++)
             {
                 _resourceSets[i].Dispose();
             }
+            _display.Dispose();
             _device.Dispose();
         }
 
-        public float Ratio { get; set; } = 1.0f;
-
-        public void OnRender()
+        public void Render(float ratio)
         {
             var frameIndex = _display.SwapChain.CurrentBackBufferIndex;
-            _resourceSets[frameIndex].Ratio = Ratio;
-            _resourceSets[frameIndex].Render(_display.RenderTargets[frameIndex],
+            _resourceSets[frameIndex].Render(ratio, _display.RenderTargets[frameIndex],
                 _display.GetRtvCpuDescriptorHandle(frameIndex));
             _display.SwapChain.Present(1, 0);
             _resourceSets[frameIndex].Fence.WaitForPreviousFrame();
-        }
-        
-        public void OnDestroy()
-        {
-            for (int i = 0; i < FrameCount; i++)
-            {
-                _resourceSets[i].Fence.WaitForPreviousFrame();
-            }
         }
     }
 }
