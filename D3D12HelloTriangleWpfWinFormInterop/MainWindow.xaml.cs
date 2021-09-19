@@ -11,8 +11,9 @@ namespace D3D12HelloTriangleWpfWinFormInterop
     public partial class MainWindow : Window
     {
         private D3D12HelloTriangleWindow? _renderer;
+        private ThreadExecutor _executor = new ThreadExecutor();
         private float _ratio;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -20,7 +21,8 @@ namespace D3D12HelloTriangleWpfWinFormInterop
 
             WinFormsHost.Loaded += (_, _) =>
             {
-                _renderer = new D3D12HelloTriangleWindow(WinFormsPanel.Handle, WinFormsPanel.Width, WinFormsPanel.Height);
+                _renderer = new D3D12HelloTriangleWindow(WinFormsPanel.Handle, WinFormsPanel.Width,
+                    WinFormsPanel.Height);
                 _renderer.Render(_ratio);
             };
 
@@ -31,6 +33,7 @@ namespace D3D12HelloTriangleWpfWinFormInterop
         {
             CompositionTarget.Rendering -= CompositionTarget_OnRendering;
             _renderer?.Dispose();
+            _executor.Dispose();
             base.OnClosed(e);
         }
 
@@ -42,7 +45,7 @@ namespace D3D12HelloTriangleWpfWinFormInterop
                 if (_ratio != value)
                 {
                     _ratio = value;
-                    _renderer.Render(value);
+                    _executor.BeginInvoke(() => _renderer.Render(value));
                 }
             }
         }
