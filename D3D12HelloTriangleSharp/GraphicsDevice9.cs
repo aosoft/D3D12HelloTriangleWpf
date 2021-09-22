@@ -44,6 +44,6 @@ namespace D3D12HelloTriangleSharp
         public D3D9.Direct3DEx D3DEx { get; }
         public D3D9.DeviceEx Device { get; }
         public D3D9.Surface RenderTarget { get; }
-        private IntPtr RenderTargetSharedHanlde { get; }
+        public IntPtr RenderTargetSharedHanlde { get; }
     }
 }
