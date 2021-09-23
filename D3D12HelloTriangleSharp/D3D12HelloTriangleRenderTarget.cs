@@ -1,6 +1,6 @@
 ﻿using System;
 using SharpDX;
-using DXGI = SharpDX.DXGI;
+using D3D9 = SharpDX.Direct3D9;
 using D3D12 = SharpDX.Direct3D12;
 
 namespace D3D12HelloTriangleSharp
@@ -13,7 +13,7 @@ namespace D3D12HelloTriangleSharp
         private readonly D3D12.Resource _renderTarget;
         private readonly D3D12.DescriptorHeap _rtvHeap;
 
-        public D3D12HelloTriangleRenderTarget(IntPtr handle, int width, int height)
+        public D3D12HelloTriangleRenderTarget(int width, int height)
         {
             _device9 = new GraphicsDevice9(width, height);
             _device = new GraphicsDevice(false);
@@ -46,6 +46,8 @@ namespace D3D12HelloTriangleSharp
             _device9.Dispose();
         }
 
+        public D3D9.Surface RenderTargetSurface => _device9.RenderTarget;
+        
         public void Render(float ratio)
         {
             _resourceSet.Render(ratio, _renderTarget, _rtvHeap.CPUDescriptorHandleForHeapStart);

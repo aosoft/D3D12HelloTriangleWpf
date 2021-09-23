@@ -30,9 +30,18 @@ namespace D3D12HelloTriangleWpfD3DImage
 
             Loaded += (_, _) =>
             {
-                var wih = new WindowInteropHelper(this);
-                _renderer = new D3D12HelloTriangleRenderTarget(wih.Handle, 800, 800);
-                _renderer.Render(1.0f);
+                _renderer = new D3D12HelloTriangleRenderTarget(800, 800);
+                D3DImage.Lock();
+                try
+                {
+                    D3DImage.SetBackBuffer(D3DResourceType.IDirect3DSurface9, _renderer.RenderTargetSurface.NativePointer);
+                    _renderer.Render(1.0f);
+                    D3DImage.AddDirtyRect(new Int32Rect(0, 0, 800, 800));
+                }
+                finally
+                {
+                    D3DImage.Unlock();
+                }
             };
         }
 
