@@ -22,6 +22,9 @@ namespace D3D12HelloTriangleWpfD3DImage
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly int RenderTargetWidth = 800;
+        private static readonly int RenderTargetHeight = 800;
+        
         private D3D12HelloTriangleRenderTarget? _renderer;
         
         public MainWindow()
@@ -30,18 +33,8 @@ namespace D3D12HelloTriangleWpfD3DImage
 
             Loaded += (_, _) =>
             {
-                _renderer = new D3D12HelloTriangleRenderTarget(800, 800);
-                D3DImage.Lock();
-                try
-                {
-                    D3DImage.SetBackBuffer(D3DResourceType.IDirect3DSurface9, _renderer.RenderTargetSurface.NativePointer);
-                    _renderer.Render(1.0f);
-                    D3DImage.AddDirtyRect(new Int32Rect(0, 0, 800, 800));
-                }
-                finally
-                {
-                    D3DImage.Unlock();
-                }
+                _renderer = new D3D12HelloTriangleRenderTarget(RenderTargetWidth, RenderTargetHeight);
+                Render(1.0f);
             };
         }
 
@@ -49,6 +42,33 @@ namespace D3D12HelloTriangleWpfD3DImage
         {
             _renderer?.Dispose();
             base.OnClosed(e);
+        }
+
+        private void Slider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Render((float)Slider.Value);
+        }
+
+        private void Render(float ratio)
+        {
+            if (_renderer == null)
+            {
+                return;
+            }
+
+            var d3dimage = D3DImage;
+            d3dimage.Lock();
+            try
+            {
+                d3dimage.SetBackBuffer(D3DResourceType.IDirect3DSurface9, _renderer.RenderTargetSurface.NativePointer);
+                _renderer.Render(ratio);
+                d3dimage.AddDirtyRect(new Int32Rect(0, 0, RenderTargetWidth, RenderTargetHeight));
+            }
+            finally
+            {
+                d3dimage.Unlock();
+            }
+            
         }
     }
 }

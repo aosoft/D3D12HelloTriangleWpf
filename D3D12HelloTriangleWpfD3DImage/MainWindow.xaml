@@ -9,10 +9,17 @@
   mc:Ignorable="d"
   Title="MainWindow" Height="450" Width="800">
   <Grid>
-    <Image>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="32" />
+    </Grid.RowDefinitions>
+    <Image Grid.Row="0">
       <Image.Source>
         <i:D3DImage x:Name="D3DImage" />
       </Image.Source>
     </Image>
+    <Slider
+      Grid.Row="1" x:Name="Slider" VerticalAlignment="Stretch" Minimum="0.0" Maximum="1.0" Value="1.0"
+      ValueChanged="Slider_OnValueChanged" />
   </Grid>
 </Window>

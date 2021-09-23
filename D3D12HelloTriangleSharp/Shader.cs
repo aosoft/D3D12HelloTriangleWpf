@@ -100,7 +100,7 @@ PSInput VSMain(float4 position : POSITION, float4 color : COLOR)
 
 float4 PSMain(PSInput input) : SV_TARGET
 {
-    return input.color * ratio;
+    return float4(input.color.xyz * ratio, 1.0);
 }
 ";
         
