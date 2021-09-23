@@ -8,10 +8,12 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using D3D12HelloTriangleSharp;
 
 namespace D3D12HelloTriangleWpfD3DImage
 {
@@ -20,9 +22,24 @@ namespace D3D12HelloTriangleWpfD3DImage
     /// </summary>
     public partial class MainWindow : Window
     {
+        private D3D12HelloTriangleRenderTarget? _renderer;
+        
         public MainWindow()
         {
             InitializeComponent();
+
+            Loaded += (_, _) =>
+            {
+                var wih = new WindowInteropHelper(this);
+                _renderer = new D3D12HelloTriangleRenderTarget(wih.Handle, 800, 800);
+                _renderer.Render(1.0f);
+            };
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            _renderer?.Dispose();
+            base.OnClosed(e);
         }
     }
 }

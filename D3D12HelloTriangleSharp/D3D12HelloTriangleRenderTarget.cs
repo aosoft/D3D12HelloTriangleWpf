@@ -23,6 +23,8 @@ namespace D3D12HelloTriangleSharp
             _device.Device.OpenSharedHandle(_device9.RenderTargetSharedHanlde,
                 Utilities.GetGuidFromType(typeof(D3D12.Resource)), out intf);
             _renderTarget = new D3D12.Resource(intf);
+
+            var desc = _renderTarget.Description;
             
             var rtvHeapDesc = new D3D12.DescriptorHeapDescription
             {
@@ -32,10 +34,12 @@ namespace D3D12HelloTriangleSharp
                 NodeMask = 0
             };
             _rtvHeap = _device.Device.CreateDescriptorHeap(rtvHeapDesc);
+            _device.Device.CreateRenderTargetView(_renderTarget, null, _rtvHeap.CPUDescriptorHandleForHeapStart);
         }
 
         public void Dispose()
         {
+            _rtvHeap.Dispose();
             _renderTarget.Dispose();
             _resourceSet.Dispose();
             _device.Dispose();
