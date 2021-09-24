@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Interop;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Media3D;
 using D3D12HelloTriangleSharp;
 
 namespace D3D12HelloTriangleWpfD3DImage
@@ -36,6 +26,17 @@ namespace D3D12HelloTriangleWpfD3DImage
                 _renderer = new D3D12HelloTriangleRenderTarget(RenderTargetWidth, RenderTargetHeight);
                 Render(1.0f);
             };
+            
+            var anim = new DoubleAnimation
+            {
+                BeginTime = TimeSpan.Zero,
+                Duration = new Duration(TimeSpan.FromSeconds(10)),
+                From = 0.0,
+                To = 360.0,
+                RepeatBehavior = RepeatBehavior.Forever
+            };
+            
+            BaseRotate.BeginAnimation(AxisAngleRotation3D.AngleProperty, anim);
         }
 
         protected override void OnClosed(EventArgs e)

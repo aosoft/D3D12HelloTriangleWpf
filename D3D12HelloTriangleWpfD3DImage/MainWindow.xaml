@@ -7,19 +7,66 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:local="clr-namespace:D3D12HelloTriangleWpfD3DImage"
   mc:Ignorable="d"
-  Title="MainWindow" Height="450" Width="800">
+  Title="MainWindow" Height="450" Width="800" Background="DarkBlue">
   <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="*" />
-      <RowDefinition Height="32" />
-    </Grid.RowDefinitions>
-    <Image Grid.Row="0">
-      <Image.Source>
-        <i:D3DImage x:Name="D3DImage" />
-      </Image.Source>
-    </Image>
+    <Viewport3D>
+      <Viewport3D.Camera>
+        <PerspectiveCamera
+          Position="0, 20, 40"
+          FieldOfView="30"
+          UpDirection="0, 1, 1"
+          LookDirection="0, -1, -2" />
+      </Viewport3D.Camera>
+      <ModelVisual3D>
+        <ModelVisual3D.Content>
+          <DirectionalLight Color="White" Direction="0,-1,-1" />
+        </ModelVisual3D.Content>
+      </ModelVisual3D>
+      <ModelVisual3D>
+        <ModelVisual3D.Transform>
+          <Transform3DGroup>
+            <ScaleTransform3D
+              ScaleX="4" ScaleY="4" ScaleZ="4" />
+            <RotateTransform3D>
+              <RotateTransform3D.Rotation>
+                <AxisAngleRotation3D
+                  x:Name="BaseRotate"
+                  Angle="0" />
+              </RotateTransform3D.Rotation>
+            </RotateTransform3D>
+          </Transform3DGroup>
+        </ModelVisual3D.Transform>
+        <ModelVisual3D.Content>
+          <GeometryModel3D>
+            <GeometryModel3D.Geometry>
+              <MeshGeometry3D
+                Positions="-1,1,1 -1,-1,1 1,-1,1 1,1,1 -1,1,-1 -1,-1,-1 1,-1,-1 1,1,-1"
+                TextureCoordinates="0,0 0,1 1,1 1,0 1,0 1,1 0,1 0,0"
+                TriangleIndices="0 1 2 0 2 3 4 6 5 4 7 6 0 4 5 0 5 1 1 5 6 1 6 2 2 6 7 2 7 3 3 7 4 3 4 0" />
+            </GeometryModel3D.Geometry>
+            <GeometryModel3D.Material>
+              <MaterialGroup>
+                <DiffuseMaterial>
+                  <DiffuseMaterial.Brush>
+                    <ImageBrush>
+                      <ImageBrush.ImageSource>
+                        <i:D3DImage x:Name="D3DImage" />
+                      </ImageBrush.ImageSource>
+                    </ImageBrush>
+                  </DiffuseMaterial.Brush>
+                </DiffuseMaterial>
+                <!--<DiffuseMaterial Brush="Red" />-->
+                <!--<EmissiveMaterial Brush="Red" />-->
+                <!--<SpecularMaterial Brush="White" SpecularPower="64" />-->
+              </MaterialGroup>
+            </GeometryModel3D.Material>
+          </GeometryModel3D>
+        </ModelVisual3D.Content>
+      </ModelVisual3D>
+    </Viewport3D>
+    
     <Slider
-      Grid.Row="1" x:Name="Slider" VerticalAlignment="Stretch" Minimum="0.0" Maximum="1.0" Value="1.0"
+      x:Name="Slider" HorizontalAlignment="Stretch" VerticalAlignment="Center" Minimum="0.0" Maximum="1.0" Value="1.0"
       ValueChanged="Slider_OnValueChanged" />
   </Grid>
 </Window>
