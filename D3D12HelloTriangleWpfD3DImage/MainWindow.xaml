@@ -7,7 +7,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:local="clr-namespace:D3D12HelloTriangleWpfD3DImage"
   mc:Ignorable="d"
-  Title="MainWindow" Height="450" Width="800" Background="DarkBlue">
+  Title="MainWindow" Height="600" Width="800" Background="DarkGreen">
   <Grid>
     <Viewport3D>
       <Viewport3D.Camera>
@@ -64,6 +64,10 @@
 
     <Slider
       x:Name="Slider" HorizontalAlignment="Stretch" VerticalAlignment="Center" Minimum="0.0" Maximum="1.0" Value="1.0"
-      ValueChanged="Slider_OnValueChanged" />
+      ValueChanged="Slider_OnValueChanged">
+      <Slider.LayoutTransform>
+        <ScaleTransform ScaleX="2" ScaleY="2" />
+      </Slider.LayoutTransform>
+    </Slider>
   </Grid>
 </Window>
