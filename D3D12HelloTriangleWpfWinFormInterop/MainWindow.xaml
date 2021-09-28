@@ -6,17 +6,21 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
   mc:Ignorable="d"
-  Title="MainWindow" Height="768" Width="1024">
+  Title="MainWindow" Height="600" Width="800" Background="LightBlue">
   <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="*" />
-      <RowDefinition Height="32" />
+      <RowDefinition Height="48" />
     </Grid.RowDefinitions>
-    <WindowsFormsHost Grid.Row="0" x:Name="WinFormsHost">
+    <WindowsFormsHost Grid.Row="0" x:Name="WinFormsHost" Margin="16">
       <wf:Panel x:Name="WinFormsPanel" />
     </WindowsFormsHost>
     <Slider
       Grid.Row="1" x:Name="Slider" VerticalAlignment="Stretch" Minimum="0.0" Maximum="1.0" Value="1.0"
-      ValueChanged="Slider_OnValueChanged" />
+      ValueChanged="Slider_OnValueChanged">
+      <Slider.LayoutTransform>
+        <ScaleTransform ScaleX="2" ScaleY="2" />
+      </Slider.LayoutTransform>
+    </Slider>
   </Grid>
 </Window>
